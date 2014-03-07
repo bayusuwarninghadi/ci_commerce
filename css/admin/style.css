@@ -1,0 +1,42 @@
+html { background: #bbb; line-height: 100%}
+a{text-decoration: none;}
+.transition {-webkit-transition: 0.5s; -moz-transition: 0.5s; transition: 0.5s; }
+.content {padding: 72px 10px; background: #EDEAFF; -webkit-box-shadow: -20px 15px 30px -20px #111; box-shadow: -20px 15px 30px -20px #111;}
+
+tr.approved, tr.approved:hover, tr.approved > td:hover, tr.approved:hover > td{ background: #9ad717}
+tr.paid, tr.paid:hover, tr.paid > td:hover, tr.paid:hover > td{ background: yellow}
+tr.rejected, tr.rejected:hover, tr.rejected > td:hover, tr.rejected:hover > td{ background: #ff0000}
+
+header{ position: fixed; top:0; left: 0; right: 0; background: #F5F5F5; }
+.admin-menu .menu{
+    float: left;
+    position: relative;
+}
+.admin-menu .menu .link{
+    color: #666;
+    padding: 10px;
+    font-size: 20px;
+    width: 50px;
+    display: inline-block;
+    text-align: center;
+    background: #f5f5f5
+}
+.admin-menu .menu .link:hover { background: #666; color: #fff }
+
+.admin-menu .menu .sub {
+    top:0;
+    position: absolute;
+    display: none;
+}
+.admin-menu .menu .sub .menu + .menu{
+    -webkit-box-shadow: 0px 4px 8px -5px #666;
+    box-shadow: 0px 4px 8px -5px #666;
+}
+.admin-menu .menu:hover .sub {
+    display: block;
+}
+.admin-menu .menu .smaller { font-size: 10px; text-transform: capitalize}
+table img {height:80px;}
+.load-more { background: #f5f5f5; padding: 10px; text-align: center; border-bottom: 1px solid #ddd; border-left: 1px solid #eee; border-right: 1px solid #eee; margin-top: 20px; cursor: pointer}
+table { width: 100%}
+td { vertical-align: top;}

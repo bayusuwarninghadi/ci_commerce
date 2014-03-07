@@ -1,0 +1,19 @@
+@media only screen and (max-width : 752px) {
+    h1, h2 {font-size: 20px; padding: 10px 0;}
+    h3, h4, h5 { font-size: 16px}
+    .header-top { text-align: right}
+    .desktop { display: none !important; }
+    .navbar { position: relative;}
+    .navbar .root { width: auto; }
+    .navbar .link, .navbar .root:hover .root-link { padding: 5px 10px; font-size: 11px}
+
+    .slider .theme-default .nivoSlider { height: 300px}
+    .new-product { text-align: center}
+    .new-product .product { width: 30%; float: none; display: inline-block;}
+
+    .articles { text-align: center; }
+    .articles .article { width: 44%; display: inline-block; text-align: left; float: none;; margin: 3px 2%; overflow: hidden;}
+
+    footer .social { float: none; text-align: center; margin: 10px 0; height: 50px; width: auto; display: block}
+}
+
