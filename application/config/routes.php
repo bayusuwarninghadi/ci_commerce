@@ -80,6 +80,8 @@ $route['change_email'] = "catalog/cuser/change_email";
 $route['change_password'] = "catalog/cuser/change_password";
 $route['logout'] = "catalog/cuser/logout";
 
+$route['session/(:any)'] = "catalog/csession/pages/$1";
+
 $route['admin'] = "admin/cadmin";
 $route['admin/login'] = "admin/clogin";
 $route['admin/logout'] = "admin/cadmin/adminLogout";

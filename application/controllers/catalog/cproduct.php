@@ -10,7 +10,7 @@ class CProduct extends General
             $this->load->model('product');
       }
 
-      public function pages($subcat1 = '')
+      public function pages()
       {
             $data['id'] = $this->input->get('id');
             $data['sideCat'] = $this->category->listSubCategoryById('03');

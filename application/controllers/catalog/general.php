@@ -3,94 +3,95 @@
 class General extends CI_Controller
 {
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->load->library('session');
-        $this->load->model('preferences');
-        $this->load->model('pages');
-    }
+      function __construct()
+      {
+            parent::__construct();
+            $this->load->library('session');
+            $this->load->model('preferences');
+            $this->load->model('pages');
+      }
 
-    public function doView($file = '404', $data = null)
-    {
-        if ($file == '404') {
-            $data['title'] = 'page not found';
-        }
-        $data['isLogin'] = $this->session->userdata('isLogin');
-        $data['loggedUser'] = $this->session->userdata('user');
+      public function doView($file = '404', $data = null)
+      {
+            if ($file == '404') {
+                  $data['title'] = 'page not found';
+            }
+            $data['subscribe'] = $this->session->userdata('subscribe');
 
-        foreach ((array) $this->preferences->listAll() as $set) {
-            $preferences[$set->s_name] = $set->s_string;
-        }
-        $this->session->set_userdata('setting',$preferences);
-        $data['setting'] = $this->session->userdata('setting');
+            $data['isLogin'] = $this->session->userdata('isLogin');
+            $data['loggedUser'] = $this->session->userdata('user');
 
-        $this->load->model('category');
-        $data['categories'] = $this->category->getCategories();
+            foreach ((array)$this->preferences->listAll() as $set) {
+                  $preferences[$set->s_name] = $set->s_string;
+            }
+            $this->session->set_userdata('setting', $preferences);
+            $data['setting'] = $this->session->userdata('setting');
 
-        $data['flash_message'] = $this->session->userdata('message');
-        $this->session->set_userdata('message', '');
+            $this->load->model('category');
+            $data['categories'] = $this->category->getCategories();
 
-        $page = (Array)$this->pages->findByid('39');
-        $data['store'] = $page[0];
+            $data['flash_message'] = $this->session->userdata('message');
+            $this->session->set_userdata('message', '');
 
-        $this->load->view('catalog/header', $data);
-        $this->load->view('catalog/' . $file, $data);
-        $this->load->view('catalog/footer', $data);
-    }
+            $page = (Array)$this->pages->findByid('39');
+            $data['store'] = $page[0];
 
-    public function send_mail($to_email = '', $email_slug = '', $data = array())
-    {
-        $this->load->library('email');
+            $this->load->view('catalog/header', $data);
+            $this->load->view('catalog/' . $file, $data);
+            $this->load->view('catalog/footer', $data);
+      }
 
-        $config['protocol'] = 'mail';
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['charset'] = 'iso-8859-1';
-        $config['wordwrap'] = TRUE;
-        $config['mailtype'] = 'html';
-        $this->load->model('email', 'mEmail');
+      public function send_mail($to_email = '', $email_slug = '', $data = array())
+      {
+            $this->load->library('email');
 
-        $this->email->initialize($config);
+            $config['protocol'] = 'mail';
+            $config['mailpath'] = '/usr/sbin/sendmail';
+            $config['charset'] = 'iso-8859-1';
+            $config['wordwrap'] = TRUE;
+            $config['mailtype'] = 'html';
+            $this->load->model('email', 'mEmail');
 
-        if (!isEmail($to_email)) {
-            return 1;
-        }
-        $this->email->clear();
-        $this->email->from('flowlace@gmail.com', 'flowlace');
-        $this->email->to($to_email);
+            $this->email->initialize($config);
 
-        $content = $this->mEmail->findBySlug($email_slug);
-        if (!$content) {
-            return 2;
-        }
-        $content = $content[0];
+            if (!isEmail($to_email)) {
+                  return 1;
+            }
+            $this->email->clear();
+            $this->email->from('flowlace@gmail.com', 'flowlace');
+            $this->email->to($to_email);
 
-        $this->email->subject($content->s_name);
+            $content = $this->mEmail->findBySlug($email_slug);
+            if (!$content) {
+                  return 2;
+            }
+            $content = $content[0];
 
-        $body = $content->s_body;
+            $this->email->subject($content->s_name);
 
-        $setting = $this->session->userdata('setting');
-        foreach ($setting as $key => $val) {
-            $data[$key] = $val;
-        }
-        $data['base_url'] = base_url();
+            $body = $content->s_body;
 
-        if ($data){
-            $body = mail_replace_data($body, $data);
-        }
+            $setting = $this->session->userdata('setting');
+            foreach ($setting as $key => $val) {
+                  $data[$key] = $val;
+            }
+            $data['base_url'] = base_url();
 
-        $signature = $this->mEmail->findBySlug('signature');
-        $signature = $signature[0]->s_body;
+            if ($data) {
+                  $body = mail_replace_data($body, $data);
+            }
 
-        $body = mail_beauty($body, $signature);
-        $this->email->message($body);
+            $signature = $this->mEmail->findBySlug('signature');
+            $signature = $signature[0]->s_body;
 
-        if (!$this->email->send())
-        {
-            return 3;
-        }
-        return true;
-    }
+            $body = mail_beauty($body, $signature);
+            $this->email->message($body);
+
+            if (!$this->email->send()) {
+                  return 3;
+            }
+            return true;
+      }
 
 
 }

@@ -1,7 +1,7 @@
-<? if (!$isLogin) { ?>
+<? if (!$isLogin && !$subscribe) { ?>
 <div class="subscribe pad1 white shadow2">
       <div class="content"> 
-            <div class="close pad1 white bold" onclick="$('.subscribe').toggle();">&times;</div>
+            <div class="close pad1 white bold">&times;</div>
             <form class="search" action="/subscribe" method="post">
                   <div class="row">
                         <label>Newsletter: </label>
@@ -15,6 +15,13 @@
             </form>
       </div>
 </div>
+<script type="text/javascript">
+      $(".subscribe .close").click(function(){
+            $('.subscribe').toggle();
+            $.post("/session/set?key=subscribe&value=1");
+      })
+</script>
+<??>
 <? } ?>
 </body>
 
