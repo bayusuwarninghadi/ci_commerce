@@ -11,7 +11,7 @@
       <script type="text/javascript" src="/js/jquery.elevateZoom-3.0.8.min.js"></script>
       <script type="text/javascript" src="/js/common.js"></script>
 </head>
-<header class="white shadow2 container">
+<header class="white shadow container">
       <div class="pad1" style="border-bottom: 1px solid #666">
             <div class="header-top center">
                   <div class="logo">

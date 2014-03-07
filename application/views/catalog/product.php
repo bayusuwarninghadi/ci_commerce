@@ -3,33 +3,34 @@
             <?php if ($id) { ?>
             <div class="article">
                   <div class="fleft" style="width: 30%">
-                        <img id="image-preview" class="image-preview" data-zoom-image="/images/product/<?=$page->s_image?>"
+                        <img class="image-preview" data-zoom-image="/images/product/<?=$page->s_image?>"
                              src="/images/product/thumbs/<?=$page->s_image?>" alt="" style="max-width: 100%">
 
-                        <div class="navigator">
+                        <div id="navigator" class="navigator">
                               <?if ($page->s_image) { ?>
-                              <div class="img-thumb active" data-original="/images/product/<?=$page->s_image?>"
-                                   data-thumb="/images/product/thumbs/<?=$page->s_image?>"
-                                   style="background-image: url('/images/product/thumbs/<?=$page->s_image?>')"></div><? }?>
+                              <a href="#" data-zoom-image="/images/product/<?=$page->s_image?>" data-image="/images/product/thumbs/<?=$page->s_image?>">
+                                    <div class="img-thumb active" style="background-image: url('/images/product/thumbs/<?=$page->s_image?>')"></div>
+                              </a>
+                              <? }?>
                               <?if ($page->s_image2) { ?>
-                              <div class="img-thumb" data-original="/images/product/<?=$page->s_image2?>"
-                                   data-thumb="/images/product/thumbs/<?=$page->s_image2?>"
-                                   style="background-image: url('/images/product/thumbs/<?=$page->s_image2?>')"></div><? }?>
+                              <a href="#" data-zoom-image="/images/product/<?=$page->s_image2?>" data-image="/images/product/thumbs/<?=$page->s_image2?>">
+                                    <div class="img-thumb" style="background-image: url('/images/product/thumbs/<?=$page->s_image2?>')"></div>
+                              </a>
+                              <? }?>
                               <?if ($page->s_image3) { ?>
-                              <div class="img-thumb" data-original="/images/product/<?=$page->s_image3?>"
-                                   data-thumb="/images/product/thumbs/<?=$page->s_image3?>"
-                                   style="background-image: url('/images/product/thumbs/<?=$page->s_image3?>')"></div><? }?>
+                              <a href="#" data-zoom-image="/images/product/<?=$page->s_image3?>" data-image="/images/product/thumbs/<?=$page->s_image3?>">
+                                    <div class="img-thumb" style="background-image: url('/images/product/thumbs/<?=$page->s_image3?>')"></div>
+                              </a>
+                              <? }?>
+
                               <?if ($page->s_image4) { ?>
-                              <div class="img-thumb" data-original="/images/product/<?=$page->s_image4?>"
-                                   data-thumb="/images/product/thumbs/<?=$page->s_image4?>"
-                                   style="background-image: url('/images/product/thumbs/<?=$page->s_image4?>')"></div><? }?>
+                              <a href="#" data-zoom-image="/images/product/<?=$page->s_image4?>" data-image="/images/product/thumbs/<?=$page->s_image4?>">
+                                    <div class="img-thumb" style="background-image: url('/images/product/thumbs/<?=$page->s_image4?>')"></div>
+                              </a>
+                              <? }?>
                               <div class="clear"></div>
                         </div>
                   </div>
-                  <script type="text/javascript">
-                        $("#image-preview").elevateZoom({scrollZoom : true});
-                  </script>
-
                   <div class="fright desc" style="width: 70%">
                         <div class="mar01">
                               <h1><?php echo $page->s_name?></h1>

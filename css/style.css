@@ -486,7 +486,7 @@ footer .content-bottom a {
     border: 2px solid #ddd;
     cursor: pointer;
 }
-.img-thumb.active {
+.navigator a.active .img-thumb{
     border: 2px solid #111;
 }
 

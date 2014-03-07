@@ -13,13 +13,13 @@ $(document).ready(function() {
         $(this).attr('src','/images/notfound.jpg')
     })
     if ($('.img-thumb').length > 0) {
-        $('.img-thumb').click(function(ev){
-            var this_ = $(ev.currentTarget);
-            var prev_ = $('.image-preview');
-            this_.siblings().removeClass('active');
-            this_.addClass('active');
-            prev_.attr('src',this_.data('thumb'));
-        })
+        $(".image-preview").elevateZoom({gallery:'navigator', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: '/images/loader.gif'});
+
+        $(".image-preview").bind("click", function(e) {
+            var ez = $('#zoom_03').data('elevateZoom');
+            $.fancybox(ez.getGalleryList());
+            return false;
+        });
     }
     setTimeout(function(){
         $('.flash-msg').fadeOut();
