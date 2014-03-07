@@ -25,7 +25,7 @@
 <? } ?>
 </body>
 
-<footer class="white shadow2">
+<footer>
       <div class="container center pad1">
             <div class="to-top icon-arrow-up"></div>
             <div>
