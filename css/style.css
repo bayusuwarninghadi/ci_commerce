@@ -200,7 +200,7 @@ a:hover {
     /*filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter ….3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");*/
     /*filter: gray;*/
     /*-webkit-filter: grayscale(100%);*/
-    margin: 3px;;
+    margin: 1px;;
     background: no-repeat center center;
     background-size: auto 100%;
     position: relative;

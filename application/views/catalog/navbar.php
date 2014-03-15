@@ -9,13 +9,13 @@
             <?foreach ($cat['sub'] as $cat) { ?>
             <li class="no-over">
                   <a class="link <?php echo $cat['s_slug']?>"
-                     href="/product<?php echo $cat['s_url']?>"><?php echo $cat['s_name']?></a>
+                     href="/product/<?php echo $cat['s_slug']?>"><?php echo $cat['s_name']?></a>
                   <?php if (isset($cat['sub'])) { ?>
                   <ul class="sub no-over sub-menu-2">
                         <?foreach ($cat['sub'] as $cat) { ?>
                         <li class="no-over">
                               <a class="link <?php echo $cat['s_slug']?>"
-                                 href="/product<?php echo $cat['s_url']?>"><?php echo $cat['s_name']?></a>
+                                 href="/product/<?php echo $cat['s_slug']?>"><?php echo $cat['s_name']?></a>
                         </li>
                         <?php } ?>
                         <div class="clear"></div>

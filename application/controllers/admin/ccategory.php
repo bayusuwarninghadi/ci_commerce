@@ -37,8 +37,7 @@ class CCategory extends CAdmin
 				if ($post_) {
 					$post_ = $this->prepareData($post_);
 					$data = array_merge($data, $post_);
-
-
+					$update = $this->category->updateById($data);
 					header("Location: /admin/category");
 				} else {
 					$cat = (Array)$this->category->findByid($data['id']);

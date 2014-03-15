@@ -4,7 +4,7 @@
             data-depth='<?php echo $cat['i_depth']?>'
             data-slug='<?php echo $cat['s_slug']?>'
             value='<?php echo $cat['pk_i_id']?>'>
-            <?=str_repeat("--", $cat['i_depth'])?> <?php echo $cat['s_name']?>
+            <?=str_repeat("&nbsp;&nbsp;&nbsp;", $cat['i_depth'])?> <?php echo $cat['s_name']?>
       </option>
       <? if ($cat['sub']) echo create_combobox_view($cat['sub'], $selected);?>
       <?php } ?>
