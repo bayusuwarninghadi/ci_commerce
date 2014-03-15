@@ -4,7 +4,7 @@
         <h3><?php echo $page->s_name?></h3>
         <?php if (isset($page->s_image)) { ?>
             <a class="preview" href="<?php echo '/images/slider/' . $page->s_image;?>">
-                <img src="<?php echo '/images/slider/thumbs/' . $page->s_image;?>" alt="">
+                <img src="<?php echo '/images/slider/thumbs/' . $page->s_image;?>" alt="" width="300">
             </a>
             <? } ?>
         <form action="/admin/slider/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data"
@@ -57,7 +57,7 @@
                 </td>
                 <td>
                     <? if (isset($page->s_image)) { ?>
-                    <img src="<?php echo '/images/slider/thumbs/' . $page->s_image;?>" alt="" width="100">
+                    <img src="<?php echo '/images/slider/thumbs/' . $page->s_image;?>" alt="" maxwidth="100">
                     <? } ?>
                 </td>
                 <td><a class="button" href="<?php echo '/admin/slider/edit?id=' . $page->pk_i_id?>">Edit</a></td>

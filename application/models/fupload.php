@@ -14,7 +14,7 @@ class Fupload extends CI_Model
         $this->gallery_real_url = $path . '/';
     }
 
-    function do_upload($fileName = null , $fieldName = 'userfile')
+    function do_upload($fileName = null , $fieldName = 'userfile', $width = 500, $height = 400)
     {
         $config = array(
             'allowed_types' => 'jpg|jpeg|gif|png',
@@ -33,8 +33,8 @@ class Fupload extends CI_Model
             'source_image' => $image_data['full_path'],
             'new_image' => $this->gallery_path . '/thumbs',
             'maintain_ration' => true,
-            'width' => 500,
-            'height' => 400
+            'width' => $width,
+            'height' => $height
         );
 
         if ($fileName != null) {

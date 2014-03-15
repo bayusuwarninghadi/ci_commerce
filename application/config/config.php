@@ -15,6 +15,7 @@
 |
 */
 $config['base_url']	= 'local.flowshop.com';
+$config['email_protocol']	= 'smtp';
 
 /*
 |--------------------------------------------------------------------------
