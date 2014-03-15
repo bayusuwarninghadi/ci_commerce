@@ -137,49 +137,7 @@ class Category extends CI_Model
       }
 
 
-      public function listCategory()
-      {
-            $category = $this->listAll();
-            $cat_ = array();
-            foreach ($category as $cat) {
-                  $ccat = array(
-                        'pk_i_id' => $cat->pk_i_id,
-                        's_name' => $cat->s_name,
-                        's_slug' => $cat->s_slug,
-                        's_url' => $cat->s_url
-                  );
 
-                  if (strlen($cat->pk_i_id) == 2) {
-                        $cat_[$cat->pk_i_id] = $ccat;
-                  } elseif (strlen($cat->pk_i_id) == 4) {
-                        $cat_[$cat->pk_i_id[0] . $cat->pk_i_id[1]]['sub'][$cat->pk_i_id] = $ccat;
-                  } elseif (strlen($cat->pk_i_id) == 6) {
-                        $cat_[$cat->pk_i_id[0] . $cat->pk_i_id[1]]['sub'][$cat->pk_i_id[0] . $cat->pk_i_id[1] . $cat->pk_i_id[2] . $cat->pk_i_id[3]]['sub'][$cat->pk_i_id] = $ccat;
-                  }
-            }
-            return $cat_;
-      }
-
-      public function listSubCategoryById($cat)
-      {
-            $category = $this->listAllSubCategory($cat);
-            $cat_ = array();
-            foreach ($category as $cat) {
-                  $ccat = array(
-                        'pk_i_id' => $cat->pk_i_id,
-                        's_name' => $cat->s_name,
-                        's_slug' => $cat->s_slug,
-                        's_url' => $cat->s_url
-                  );
-
-                  if (strlen($cat->pk_i_id) == 4) {
-                        $cat_[$cat->pk_i_id] = $ccat;
-                  } elseif (strlen($cat->pk_i_id) == 6) {
-                        $cat_[$cat->pk_i_id[0] . $cat->pk_i_id[1] . $cat->pk_i_id[2] . $cat->pk_i_id[3]]['sub'][$cat->pk_i_id] = $ccat;
-                  }
-            }
-            return $cat_;
-      }
 }
 
 ?>

@@ -180,7 +180,7 @@ class CProduct extends CAdmin
 			default:
 				$data['s_color'] = (array)$this->input->post('s_color');
 				$this->load->model('category');
-				$data['categories'] = $this->category->listCategory();
+				$data['categories'] = $this->category->getCategories();
 
 				$data['page'] = $this->input->post('page');
 				if (!is_numeric($data['page']) || $data['page'] == '' || $data['page'] < 1) $data['page'] = 1;
