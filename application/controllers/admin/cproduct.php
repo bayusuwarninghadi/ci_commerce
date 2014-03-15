@@ -19,7 +19,7 @@ class CProduct extends CAdmin
 			case 'new':
 				$post_ = $this->input->post();
 				$this->load->model('category');
-				$data['categories'] = $this->category->listCategory();
+				$data['categories'] = $this->category->getCategories();
 				if ($post_) {
 					$post_ = $this->prepareData($post_);
 					$data = array_merge($data, $post_);
@@ -77,7 +77,7 @@ class CProduct extends CAdmin
 				$data['pk_i_id'] = $this->input->get('id');
 				$post_ = $this->input->post();
 				$this->load->model('category');
-				$data['categories'] = $this->category->listCategory();
+				$data['categories'] = $this->category->getCategories();
 				if ($post_) {
 					$post_ = $this->prepareData($post_);
 					$data = array_merge($data, $post_);
