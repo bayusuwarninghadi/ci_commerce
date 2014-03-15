@@ -20,18 +20,10 @@
             <div class="row">
                 <a class="button" href="/admin/user/change_password?id=<?=$page->pk_i_id?>">Change Password</a>
             </div>
-            <div class="row">
-                <label>Username</label>
-                <input name="s_username" type="text" value="<?php echo $page->s_username; ?>">
-            </div>
 
             <div class="row">
                 <label>Phone Number</label>
                 <input name="s_phone" class="numeric" type="text" value="<?php echo $page->s_phone; ?>">
-            </div>
-            <div class="row">
-                <label>Identity Number (ktp)</label>
-                <input name="i_ktp" class="numeric" type="text" value="<?php echo $page->i_ktp; ?>">
             </div>
             <div class="row" id="address">
                 <label>Address (billing address)</label>
@@ -49,11 +41,7 @@
                 <label>Bank Account Number</label>
                 <input name="i_rek" class="numeric" type="text" value="<?php echo $page->i_rek; ?>">
             </div>
-            <div class="row">
-                <label>Website</label>
-                <input name="s_website" type="text" value="<?php echo $page->s_website; ?>">
-            </div>
-            <?php echo form_submit('upload', 'Upload'); ?>
+            <?php echo form_submit('upload', 'Edit'); ?>
         </form>
         <?php } elseif ($act == 'new') { ?>
         <h1>POST NEW</h1>
@@ -68,16 +56,8 @@
                 <input name="s_email" type="text">
             </div>
             <div class="row">
-                <label>Username</label>
-                <input name="s_username" type="text">
-            </div>
-            <div class="row">
                 <label>Phone Number</label>
                 <input name="s_phone" class="numeric" type="text">
-            </div>
-            <div class="row">
-                <label>Identity Number (ktp)</label>
-                <input name="i_ktp" class="numeric" type="text">
             </div>
             <div class="row" id="address">
                 <label>Address (billing address)</label>
@@ -94,10 +74,6 @@
             <div class="row">
                 <label>Bank Account Number</label>
                 <input name="i_rek" class="numeric" type="text">
-            </div>
-            <div class="row">
-                <label>Website</label>
-                <input name="s_website" type="text">
             </div>
             <?php echo form_submit('upload', 'Upload'); ?>
         </form>

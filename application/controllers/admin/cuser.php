@@ -219,7 +219,9 @@ class CUser extends CAdmin
 
 				if ($this->input->post('password')) {
 					$updatePass = $this->users->updateUserPasswordByIdAndPass($find_user->pk_i_id, $find_user->s_password, md5($data['password']));
-					$this->session->set_userdata(array('message' => "success"));
+					$this->session->set_userdata(array('adminMessage' => $updatePass ? "Change Password Success" : "failed save password"));
+					header("Location: /admin/user/edit?id=" . $find_user->pk_i_id);
+					exit;
 				}
 
 				$this->doView('change_password', $data);
