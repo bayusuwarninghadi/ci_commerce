@@ -35,6 +35,7 @@ class CUserNonSecure extends General
 		exit;
 	}
 
+
 	public function register()
 	{
 		$this->load->helper('form');
@@ -44,9 +45,27 @@ class CUserNonSecure extends General
 			header("Location: /account");
 			exit;
 		} else {
-			$post_ = $this->input->post();
-			if ($post_) {
-				$data = $post_;
+
+			$data['title'] = 'Register';
+
+			$data['s_name'] = $this->input->post('s_name');
+			$data['s_email'] = $this->input->post('s_email');
+			$data['s_password'] = $this->input->post('s_password');
+			$data['s_phone'] = $this->input->post('s_phone');
+			$data['s_address'] = $this->input->post('s_address');
+			$data['s_website'] = $this->input->post('s_website');
+			$data['s_username'] = $this->input->post('s_username');
+			$data['i_ktp'] = $this->input->post('i_ktp');
+			$data['i_rek'] = $this->input->post('i_rek');
+			$data['s_bank'] = $this->input->post('s_bank');
+			$data['s_bank_name'] = $this->input->post('s_bank_name');
+			$data['agreement'] = $this->input->post('agreement');
+
+			# prepare data
+
+			if ($this->input->post()) {
+
+				$data['i_user_type'] = 1;
 
 				$msg = '';
 				if ($data['agreement'] != 1) {
@@ -58,20 +77,18 @@ class CUserNonSecure extends General
 				if (!$data['s_password']) {
 					$msg .= ('<div>Password required</div>');
 				}
-				if ($msg != '') {
-					$this->session->set_userdata('message', $msg);
-					header("Location: /register");
-					exit;
-				}
-				$data['i_user_type'] = 1;
 
 				$this->load->model('user');
 				$user = (Array)$this->user->findByEmail($data['s_email']);
 
 				if ($user) {
-					$this->session->set_userdata('message', 'email is already in use');
-					header("Location: /register");
-					exit;
+					$msg .= ('<div>email is already in use</div>');
+				}
+
+				if ($msg != '') {
+					$this->session->set_userdata('message', $msg);
+					$this->doView('register', $data);
+					return;
 				}
 
 				$data['s_key'] = randomPassword();
@@ -99,7 +116,6 @@ class CUserNonSecure extends General
 					$this->load->model('subscriber');
 					$this->subscriber->createNew($data['s_email']);
 					if ($email) {
-
 						$this->session->set_userdata("message", "registration success, check the following link on your email");
 					}
 					header("Location: /");
@@ -107,7 +123,6 @@ class CUserNonSecure extends General
 				}
 
 			} else {
-				$data['title'] = 'Register';
 				$this->doView('register', $data);
 			}
 		}
