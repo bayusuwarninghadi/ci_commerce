@@ -21,10 +21,6 @@
                 <a class="button" href="/change_email">Change Email</a>
                 <a class="button" href="/change_password">Change Password</a>
             </div>
-            <div class="row">
-                <label>Username</label>
-                <input name="s_username" type="text" value="<?php echo $page->s_username; ?>">
-            </div>
 
             <div class="row">
                 <label>Phone Number</label>
@@ -49,10 +45,6 @@
             <div class="row">
                 <label>Bank Account Number</label>
                 <input name="i_rek" class="numeric" type="text" value="<?php echo $page->i_rek; ?>">
-            </div>
-            <div class="row">
-                <label>Website</label>
-                <input name="s_website" type="text" value="<?php echo $page->s_website; ?>">
             </div>
             <?php echo form_submit('upload', 'Upload'); ?>
         </form>

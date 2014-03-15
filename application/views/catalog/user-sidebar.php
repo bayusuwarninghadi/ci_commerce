@@ -9,10 +9,6 @@
             </div><?= $loggedUser->s_email ?>
         </div>
         <div class="row">
-            <div style="display:inline-block; width: 20px"><i class="icon-edit"></i>
-            </div><?= $loggedUser->s_username ?>
-        </div>
-        <div class="row">
             <div style="display:inline-block; width: 20px"><i class="icon-calendar"></i>
             </div><?= $loggedUser->dt_created ?>
         </div>

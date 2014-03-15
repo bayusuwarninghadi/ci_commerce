@@ -338,13 +338,17 @@ class CUser extends CAdmin
 		if ($this->input->post('pk_i_id')) {
 			$data['pk_i_id'] = $this->input->post('pk_i_id');
 		}
-
 		$data['s_name'] = $this->input->post('s_name');
 		$data['s_email'] = $this->input->post('s_email');
-		$data['s_username'] = $this->input->post('s_username');
-		$data['s_phone'] = (int)$this->input->post('s_phone');
-		$data['s_website'] = $this->input->post('s_website');
+		$data['s_password'] = $this->input->post('s_password');
+		$data['s_phone'] = $this->input->post('s_phone');
 		$data['s_address'] = $this->input->post('s_address');
+		$data['s_website'] = $this->input->post('s_website');
+		$data['s_username'] = $this->input->post('s_username');
+		$data['i_ktp'] = $this->input->post('i_ktp');
+		$data['i_rek'] = $this->input->post('i_rek');
+		$data['s_bank'] = $this->input->post('s_bank');
+		$data['s_bank_name'] = $this->input->post('s_bank_name');
 
 		return $data;
 	}

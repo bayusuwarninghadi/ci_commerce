@@ -99,7 +99,19 @@ class CUser extends General
         if ($post_) {
             $data['i_user_type'] = 1;
             $data['s_email'] = $this->user->s_email;
-            $data = array_merge($data, $post_);
+
+	        $data['s_name'] = $this->input->post('s_name');
+	        $data['s_password'] = $this->input->post('s_password');
+	        $data['s_phone'] = $this->input->post('s_phone');
+	        $data['s_address'] = $this->input->post('s_address');
+	        $data['s_website'] = $this->input->post('s_website');
+	        $data['s_username'] = $this->input->post('s_username');
+	        $data['i_ktp'] = $this->input->post('i_ktp');
+	        $data['i_rek'] = $this->input->post('i_rek');
+	        $data['s_bank'] = $this->input->post('s_bank');
+	        $data['s_bank_name'] = $this->input->post('s_bank_name');
+
+	        $data = array_merge($data);
             if ($_FILES['s_image']) {
                 $config = array(
                     'path' => 'images/user'

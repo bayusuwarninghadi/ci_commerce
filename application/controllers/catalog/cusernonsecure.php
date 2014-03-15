@@ -60,7 +60,7 @@ class CUserNonSecure extends General
 			$data['s_bank'] = $this->input->post('s_bank');
 			$data['s_bank_name'] = $this->input->post('s_bank_name');
 			$data['agreement'] = $this->input->post('agreement');
-
+			$data['s_active'] = 0;
 			# prepare data
 
 			if ($this->input->post()) {
