@@ -60,10 +60,10 @@ class Cslider extends CAdmin
                     $post_ = $this->prepareData($post_);
                     $data = array_merge($data, $post_);
                     if ($_FILES['s_image']) {
-
-                        // image_name, image_folder, file_param
+	                    // image_name, image_folder, file_param
                         $upload = $this->fupload->do_upload($data['pk_i_id'], 's_image', 1000, 500);
-                        if ($upload) {
+
+	                    if ($upload) {
                             $data['s_image'] = $upload['file_name'];
                             $exec = $this->pages->updateImageById($data);
                             if ($exec != 1) {

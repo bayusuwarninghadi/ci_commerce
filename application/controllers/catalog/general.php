@@ -3,11 +3,22 @@
 class General extends CI_Controller
 {
 
+	public $setting;
+
 	function __construct()
 	{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model('preferences');
+
+		$_setting = array();
+		foreach ((array)$this->preferences->listAll() as $set) {
+			$_setting[$set->s_name] = $set->s_string;
+		}
+
+		$this->setting = $_setting;
+		$this->session->set_userdata('setting', $_setting);
+
 		$this->load->model('pages');
 	}
 
@@ -21,10 +32,6 @@ class General extends CI_Controller
 		$data['isLogin'] = $this->session->userdata('isLogin');
 		$data['loggedUser'] = $this->session->userdata('user');
 
-		foreach ((array)$this->preferences->listAll() as $set) {
-			$preferences[$set->s_name] = $set->s_string;
-		}
-		$this->session->set_userdata('setting', $preferences);
 		$data['setting'] = $this->session->userdata('setting');
 
 		$this->load->model('category');
@@ -46,7 +53,7 @@ class General extends CI_Controller
 		$this->load->library('email');
 
 		$CI =& get_instance();
-		if ($CI->config->email_protocol == 'smtp') {
+		if ($this->config->email_protocol == 'smtp') {
 			$config = Array(
 				'protocol' => 'smtp',
 				'smtp_host' => 'ssl://mail.flowlace.com',
@@ -62,8 +69,6 @@ class General extends CI_Controller
 		$config['charset'] = 'iso-8859-1';
 		$config['wordwrap'] = TRUE;
 		$config['mailtype'] = 'html';
-
-
 
 		$this->load->model('email', 'mEmail');
 
