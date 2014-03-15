@@ -18,5 +18,5 @@
 </header>
 <body class="no-over">
 <?php if ($flash_message){?>
-    <div class="flash-msg shadow"><?php echo $flash_message ?></div>
+	<div class="flash-msg shadow"><?php echo $flash_message ?></div>
 <?php }?>

@@ -13,7 +13,7 @@ switch ($list) {
                   </td>
                   <td><a href="<?php echo '/admin/article/edit?id=' . $page->pk_i_id?>">Edit</a></td>
                   <td>
-                        <a onclick="if (confirm('Are you sure you want delete this into the database?')) {location.href = this.href} return false;"
+                        <a onclick="if (confirm('Are you sure you want delete this from database?')) {location.href = this.href} return false;"
                            href="<?php echo '/admin/article/delete?id=' . $page->pk_i_id?>">
                               Delete
                         </a>
@@ -44,7 +44,7 @@ switch ($list) {
                   </td>
                   <td><a href="<?php echo '/admin/product/edit?id=' . $page->pk_i_id?>">Edit</a></td>
                   <td>
-                        <a onclick="if (confirm('Are you sure you want delete this into the database?')) {location.href = this.href} return false;"
+                        <a onclick="if (confirm('Are you sure you want delete this from database?')) {location.href = this.href} return false;"
                            href="<?php echo '/admin/product/delete?id=' . $page->pk_i_id?>">
                               Delete
                         </a>
@@ -98,7 +98,7 @@ switch ($list) {
                               <a href="<?php echo '/admin/user/activate?id=' . $page->pk_i_id . '&key=' . $page->s_key?>"><i
                                     class="icon-check"></i> activate</a>
                               <? } else { ?>
-                              <a href="<?php echo '/admin/user/deactivate?id=' . $page->pk_i_id. '&key=' . $page->s_key?>"><i
+                              <a href="<?php echo '/admin/user/deactivate?id=' . $page->pk_i_id . '&key=' . $page->s_key?>"><i
                                     class="icon-check-minus"></i> Deactivate</a>
                               <? } ?>
 
@@ -121,7 +121,12 @@ switch ($list) {
                         <span class="bold"><?php echo ($page->s_level == 1) ? 'Super Admin' : 'Admin'; ?></span>
                   </td>
                   <td><a href="<?php echo '/admin/admin/edit?id=' . $page->pk_i_id?>">Edit</a></td>
-                  <td><a href="<?php echo '/admin/admin/delete?id=' . $page->pk_i_id?>">Delete</a></td>
+                  <td>
+                        <a onclick="if (confirm('Are you sure you want delete this from database?')) {location.href = this.href} return false;"
+                           href="<?php echo '/admin/admin/delete?id=' . $page->pk_i_id?>">
+                              Delete
+                        </a>
+                  </td>
             </tr>
 
             <?

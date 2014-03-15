@@ -344,9 +344,22 @@ class User extends CI_Model
             return $query;
       }
 
+      function updateAdminPasswordById($id, $new_pass)
+      {
+            $sql = sprintf("UPDATE %s SET s_password='%s' WHERE pk_i_id='%s'", $this->adminTable, $new_pass, $id);
+            $query = $this->db->query($sql);
+            return $query;
+      }
+
       function deleteByid($id)
       {
             $query = $this->db->query(sprintf("DELETE FROM %s WHERE pk_i_id='%s'", $this->table, $id));
+            return $query;
+      }
+
+      function deleteAdminByid($id)
+      {
+            $query = $this->db->query(sprintf("DELETE FROM %s WHERE pk_i_id='%s'", $this->adminTable, $id));
             return $query;
       }
 }

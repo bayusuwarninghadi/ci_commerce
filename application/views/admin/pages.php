@@ -7,7 +7,7 @@
             <a class="preview" href="<?php echo '/images/pages/' . $page->s_image;?>">
                 <img src="<?php echo '/images/pages/thumbs/' . $page->s_image;?>" alt="">
             </a>
-            <? } ?>
+        <? } ?>
         <form action="/admin/pages/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data"
               method="post">
             <?php echo form_upload('s_image'); ?>
