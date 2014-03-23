@@ -36,4 +36,10 @@
 ehthumbs.db
 Thumbs.db
 
+# unussed file
 /.idea/
+/images/article/
+/images/pages/
+/images/product/
+/images/slider/
+/images/user/
