@@ -2,15 +2,14 @@
     <div class="container">
         <?php if ($act == 'edit') { ?>
             <h3><?php echo $page->s_name?></h3>
-            <?php if (isset($page->s_image)) { ?>
-                <a class="preview" href="<?php echo '/images/article/' . $page->s_image;?>">
-                    <img src="<?php echo '/images/article/thumbs/' . $page->s_image;?>" alt="">
-                </a>
-            <? } ?>
             <form action="/admin/article/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data" method="post">
-                <?php echo form_upload('s_image'); ?>
                 <input name="pk_i_id" type="hidden" value="<?php echo $page->pk_i_id; ?>">
-                <div class="row">
+	            <div data-image='<?=$page->s_image?>' style="background-image: url('<?= '/images/article/thumbs/' . $page->s_image;?>') " class="preview fleft">
+		            <a class="delete <? if (!isset($page->s_image)) echo 'none'?>" href="<?='/admin/article/delete-image?id='.$page->pk_i_id.'&image-id=' . $page->s_image;?>"><i class="icon icon-trash"></i> </a>
+		            <?php echo form_upload('s_image'); ?>
+	            </div>
+	            <div class="clear"></div>
+	            <div class="row">
                     <label>Name</label>
                     <input name="s_name" type="text" value="<?php echo $page->s_name; ?>">
                 </div>
@@ -23,8 +22,12 @@
         <?php } elseif ($act == 'new') { ?>
             <h3>Post New</h3>
             <form action="/admin/article/new" id="pageNew" enctype="multipart/form-data" method="post">
-                <?php echo form_upload('s_image'); ?>
-                <div class="row">
+	            <div class="preview fleft">
+		            <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		            <?php echo form_upload('s_image'); ?>
+	            </div>
+	            <div class="clear"></div>
+	            <div class="row">
                     <label>Name</label>
                     <input name="s_name" type="text">
                 </div>

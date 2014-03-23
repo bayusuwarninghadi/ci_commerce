@@ -5,7 +5,7 @@
 <div class="content">
     <div style="width: 250px; margin: 100px auto">
         <form action="/admin/login" class="shadow pad1 box" id="loginForm" method="post">
-            <h2 class="logo">FLOWLACE ADMIN</h2>
+            <h2 class="logo"><?=$setting['site_name']?> ADMIN</h2>
             <input type="text" name="s_email" placeholder="Username">
             <input type="password" name="s_password" placeholder="Password">
             <input type="submit" value="Sign In">

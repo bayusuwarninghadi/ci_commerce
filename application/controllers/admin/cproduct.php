@@ -20,10 +20,15 @@ class CProduct extends CAdmin
 				$post_ = $this->input->post();
 				$this->load->model('category');
 				$data['categories'] = $this->category->getCategories();
+				$data['action'] = '/admin/product/new';
+
+				$data_ = $this->prepareData($post_);
+				$data = array_merge($data, $data_);
+
 				if ($post_) {
-					$post_ = $this->prepareData($post_);
-					$data = array_merge($data, $post_);
+
 					$exec = $this->product->createNew($data);
+
 					if ($exec == 1) {
 						$data['pk_i_id'] = mysql_insert_id();
 						$msg = 'Item successfully posted';
@@ -78,9 +83,12 @@ class CProduct extends CAdmin
 				$post_ = $this->input->post();
 				$this->load->model('category');
 				$data['categories'] = $this->category->getCategories();
+				$data['action'] = '/admin/product/edit?id='.$data['pk_i_id'];
+
+				$data_ = $this->prepareData($post_);
+				$data = array_merge($data, $data_);
+
 				if ($post_) {
-					$post_ = $this->prepareData($post_);
-					$data = array_merge($data, $post_);
 
 					$data['dt_modified'] = date('Y-m-d H:i:s');
 					$upload = false;
@@ -138,6 +146,21 @@ class CProduct extends CAdmin
 				$data['s_size'] = (array)explode(',', $data['page']->s_size);
 
 				$this->doView('product', $data, true);
+				break;
+			case 'delete-image':
+				$data['pk_i_id'] = $this->input->get('id');
+				$data['image_id'] = $this->input->get('image-id');
+				$data['field'] = $this->input->get('field');
+
+				$config = array(
+					'path' => 'images/product'
+				);
+
+				$this->product->deleteImage($data);
+
+				$this->load->model('fupload', '', false, $config);
+				$this->fupload->delete_file($data['image_id']);
+
 				break;
 			case 'delete':
 				$data['pk_i_id'] = $this->input->get('id');
@@ -232,7 +255,12 @@ class CProduct extends CAdmin
 		$data['s_name'] = $this->input->post('s_name');
 		$data['i_price'] = $this->input->post('i_price');
 		$data['i_sale'] = $this->input->post('i_sale');
+		$data['i_stok'] = $this->input->post('i_stok');
 		$data['i_size'] = $this->input->post('i_size');
+		$data['s_image'] = $this->input->post('s_image');
+		$data['s_image2'] = $this->input->post('s_image2');
+		$data['s_image3'] = $this->input->post('s_image3');
+		$data['s_image4'] = $this->input->post('s_image4');
 		$data['s_slug'] = htmlentities(str_replace(' ', '_', strtolower($data['s_name'])));
 		$data['s_body'] = $this->input->post('s_body');
 		$data['fk_i_cat_id'] = $this->input->post('fk_i_cat_id');

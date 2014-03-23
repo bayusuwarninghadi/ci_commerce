@@ -90,7 +90,21 @@ class CArticle extends CAdmin
 
                 $this->doView('article', $data, true);
                 break;
-            case 'delete':
+	        case 'delete-image':
+		        $data['pk_i_id'] = $this->input->get('id');
+		        $data['image_id'] = $this->input->get('image-id');
+
+		        $config = array(
+			        'path' => 'images/article'
+		        );
+
+		        $this->pages->deleteImage($data);
+
+		        $this->load->model('fupload', '', false, $config);
+		        $this->fupload->delete_file($data['image_id']);
+
+		        break;
+	        case 'delete':
                 $data['pk_i_id'] = $this->input->get('id');
                 if ($data['pk_i_id'] == '') return false;
                 $this->pages->setId($data['pk_i_id']);

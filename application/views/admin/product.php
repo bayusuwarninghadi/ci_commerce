@@ -5,39 +5,27 @@
         <form action="/admin/product/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data" method="post">
             <input name="pk_i_id" type="hidden" value="<?php echo $page->pk_i_id; ?>">
 
-            <div class="row">
-                <?php if (isset($page->s_image)) { ?>
-                <a class="preview" href="<?php echo '/images/product/' . $page->s_image;?>">
-                    <img src="<?php echo '/images/product/thumbs/' . $page->s_image;?>" alt="">
-                </a>
-                <? } ?>
-                <?php echo form_upload('s_image'); ?>
+            <div data-image='<?=$page->s_image?>' style="background-image: url('<?= '/images/product/thumbs/' . $page->s_image;?>') " class="preview fleft">
+	            <a class="delete <? if (!isset($page->s_image)) echo 'none'?>" href="<?='/admin/product/delete-image?field=s_image&id='.$page->pk_i_id.'&image-id=' . $page->s_image;?>"><i class="icon icon-trash"></i> </a>
+	            <?php echo form_upload('s_image'); ?>
             </div>
-            <div class="row">
-                <?php if (isset($page->s_image2)) { ?>
-                <a class="preview" href="<?php echo '/images/product/' . $page->s_image2;?>">
-                    <img src="<?php echo '/images/product/thumbs/' . $page->s_image2;?>" alt="">
-                </a>
-                <? } ?>
+
+	        <div data-image='<?=$page->s_image2?>' style="background-image: url('<?= '/images/product/thumbs/' . $page->s_image2;?>')" class="preview fleft">
+                <a class="delete <? if (!isset($page->s_image2)) echo 'none'?>" href="<?='/admin/product/delete-image?field=s_image2&id='.$page->pk_i_id.'&image-id=' . $page->s_image2;?>"><i class="icon icon-trash"></i> </a>
                 <?php echo form_upload('s_image2'); ?>
             </div>
-            <div class="row">
-                <?php if (isset($page->s_image3)) { ?>
-                <a class="preview" href="<?php echo '/images/product/' . $page->s_image3;?>">
-                    <img src="<?php echo '/images/product/thumbs/' . $page->s_image3;?>" alt="">
-                </a>
-                <? } ?>
-                <?php echo form_upload('s_image3'); ?>
 
+            <div data-image='<?=$page->s_image3?>' style="background-image: url('<?= '/images/product/thumbs/' . $page->s_image3;?>')" class="preview fleft">
+	            <a class="delete <? if (!isset($page->s_image3)) echo 'none'?>" href="<?='/admin/product/delete-image?field=s_image3&id='.$page->pk_i_id.'&image-id=' . $page->s_image3;?>"><i class="icon icon-trash"></i> </a>
+	            <?php echo form_upload('s_image3'); ?>
             </div>
-            <div class="row">
-                <?php if (isset($page->s_image4)) { ?>
-                <a class="preview" href="<?php echo '/images/product/' . $page->s_image4;?>">
-                    <img src="<?php echo '/images/product/thumbs/' . $page->s_image4;?>" alt="">
-                </a>
-                <? } ?>
-                <?php echo form_upload('s_image4'); ?>
+
+	        <div data-image='<?=$page->s_image4?>' style="background-image: url('<?= '/images/product/thumbs/' . $page->s_image4;?>')" class="preview fleft">
+	            <a class="delete <? if (!isset($page->s_image4)) echo 'none'?>" href="<?='/admin/product/delete-image?field=s_image4&id='.$page->pk_i_id.'&image-id=' . $page->s_image4;?>"><i class="icon icon-trash"></i> </a>
+	            <?php echo form_upload('s_image4'); ?>
             </div>
+
+	        <div class="clear"></div>
             <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text" value="<?php echo $page->s_name; ?>">
@@ -65,24 +53,31 @@
                 <label>Content</label>
                 <textarea class="ckeditor" name="s_body" id="s_body"><?php echo $page->s_body; ?></textarea>
             </div>
-            <?php echo form_submit('upload', 'Upload'); ?>
+            <?php echo form_submit('upload', 'Submit'); ?>
         </form>
         <?php } elseif ($act == 'new') { ?>
         <h3>Post New</h3>
         <form action="/admin/product/new" id="pageNew" enctype="multipart/form-data" method="post">
-            <div class="row">
-                <?php echo form_upload('s_image'); ?>
-            </div>
-            <div class="row">
-                <?php echo form_upload('s_image2'); ?>
-            </div>
-            <div class="row">
-                <?php echo form_upload('s_image3'); ?>
-            </div>
-            <div class="row">
-                <?php echo form_upload('s_image4'); ?>
-            </div>
-            <div class="row">
+
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image'); ?>
+	        </div>
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image2'); ?>
+	        </div>
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image3'); ?>
+	        </div>
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image4'); ?>
+	        </div>
+
+	        <div class="clear"></div>
+	        <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text">
             </div>
@@ -109,7 +104,7 @@
                 <label>Content</label>
                 <textarea class="ckeditor" name="s_body" id="s_body"></textarea>
             </div>
-            <?php echo form_submit('upload', 'Upload'); ?>
+            <?php echo form_submit('upload', 'Submit'); ?>
         </form>
         <?php } else { ?>
         <h1 class="fleft">products</h1>

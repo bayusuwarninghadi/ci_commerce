@@ -74,7 +74,7 @@ class CCategory extends CAdmin
 	{
 		$data['pk_i_id'] = $this->input->post('pk_i_id');
 		$data['s_name'] = $this->input->post('s_name');
-		$data['i_parent_id'] = $this->input->post('i_parent_id');
+		$data['i_parent_id'] = $this->input->post('fk_i_cat_id');
 
 		$data['s_slug'] = str_replace(' ', '_', strtolower($data['s_name']));
 		$data['s_url'] = '/' . $data['s_slug'];

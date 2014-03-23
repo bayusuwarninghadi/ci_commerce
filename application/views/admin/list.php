@@ -66,11 +66,6 @@ switch ($list) {
 
 				<div class="desc"><?php echo substr(strip_tags(html_entity_decode($page->s_body)), 0, 150)?></div>
 			</td>
-			<td>
-				<? if (isset($page->s_image)) { ?>
-				<img src="<?php echo '/images/pages/thumbs/' . $page->s_image;?>" alt="" height="50px;">
-				<? } ?>
-			</td>
 			<td><a href="<?php echo '/admin/pages/edit?id=' . $page->pk_i_id?>">Edit</a></td>
 		</tr>
 		<?

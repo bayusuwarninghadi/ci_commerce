@@ -85,5 +85,11 @@ class Article extends CI_Model
         return $query;
     }
 
+	function deleteImage($data){
+		$sql= sprintf('UPDATE %s SET s_image = NULL WHERE pk_i_id = %d', $this->table, $data['pk_i_id']);
+		$query = $this->db->query($sql);
+		return $query;
+	}
+
 }
 ?>

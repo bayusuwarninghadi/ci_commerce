@@ -3,15 +3,15 @@
         <?php if ($act == 'edit') { ?>
         <a href="/admin/pages/" class="button fright">Back</a>
         <div class="clear"></div>
-        <?php if (isset($page->s_image)) { ?>
-            <a class="preview" href="<?php echo '/images/pages/' . $page->s_image;?>">
-                <img src="<?php echo '/images/pages/thumbs/' . $page->s_image;?>" alt="">
-            </a>
-        <? } ?>
         <form action="/admin/pages/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data"
               method="post">
-            <?php echo form_upload('s_image'); ?>
-            <input name="pk_i_id" type="hidden" value="<?php echo $page->pk_i_id; ?>">
+	        <div data-image='<?=$page->s_image?>' style="background-image: url('<?= '/images/pages/thumbs/' . $page->s_image;?>') " class="preview fleft">
+		        <a class="delete <? if (!isset($page->s_image)) echo 'none'?>" href="<?='/admin/pages/delete-image?id='.$page->pk_i_id.'&image-id=' . $page->s_image;?>"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image'); ?>
+	        </div>
+	        <div class="clear"></div>
+
+	        <input name="pk_i_id" type="hidden" value="<?php echo $page->pk_i_id; ?>">
             <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text" value="<?php echo $page->s_name; ?>">
@@ -27,8 +27,12 @@
         <a href="/admin/pages/" class="button fright">Back</a>
         <div class="clear"></div>
         <form action="/admin/pages/new" id="pageNew" enctype="multipart/form-data" method="post">
-            <?php echo form_upload('s_image'); ?>
-            <div class="row">
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image'); ?>
+	        </div>
+	        <div class="clear"></div>
+	        <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text">
             </div>
@@ -44,7 +48,7 @@
         <hr/>
         <table class="items-table">
             <tr>
-                <th colspan="2">Pages</th>
+                <th>Pages</th>
                 <th>options</th>
             </tr>
             <? $this->load->view('admin/list'); ?>

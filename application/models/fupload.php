@@ -14,40 +14,74 @@ class Fupload extends CI_Model
         $this->gallery_real_url = $path . '/';
     }
 
-    function do_upload($fileName = null , $fieldName = 'userfile', $width = 500, $height = 400)
-    {
-        $config = array(
-            'allowed_types' => 'jpg|jpeg|gif|png',
-            'upload_path' => $this->gallery_path,
-            'max_size' => 0
-        );
 
-        if ($fileName != null) {
-            $config['file_name'] = $fileName;
-            $config['overwrite'] = true;
-        }
-        $this->load->library('upload', $config);
-        $return = $this->upload->do_upload($fieldName);
-        $image_data = $this->upload->data();
-        $config = array(
-            'source_image' => $image_data['full_path'],
-            'new_image' => $this->gallery_path . '/thumbs',
-            'maintain_ration' => true,
-            'width' => $width,
-            'height' => $height
-        );
+	function do_upload($fileName = null , $fieldName = 'userfile', $width = 500, $height = 400)
+	{
+		$config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $this->gallery_path,
+			'max_size' => 0,
+			'overwrite' => true
+		);
 
-        if ($fileName != null) {
-            $config['file_name'] = $fileName;
-            $config['overwrite'] = true;
-        }
+		if ($fileName != null) {
+			$config['file_name'] = $fileName;
+		}
 
-        $this->load->library('image_lib', $config);
-        $this->image_lib->resize();
-        return $return ? $this->upload->data() : false;
-    }
+		$this->load->library('upload', $config);
 
-    function delete_file($file_name){
+		$this->upload->initialize($config);
+		$return = $this->upload->do_upload($fieldName);
+		$image_data = $this->upload->data();
+
+		$config['source_image'] = $image_data['full_path'];
+		$config['new_image'] = $this->gallery_path . '/thumbs';
+		$config['maintain_ration'] = true;
+		$config['width'] = $width;
+		$config['height'] = $height;
+
+		$this->load->library('image_lib', $config);
+		$this->image_lib->initialize($config);
+
+		$this->image_lib->resize();
+		return $return ? $this->upload->data() : false;
+	}
+
+	function product_upload($fileName = null , $fieldName = 'userfile', $width = 500, $height = 400)
+	{
+		$config = array(
+			'allowed_types' => 'jpg|jpeg|gif|png',
+			'upload_path' => $this->gallery_path,
+			'max_size' => 0
+		);
+
+		if ($fileName != null) {
+			$config['file_name'] = $fileName;
+			$config['overwrite'] = true;
+		}
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+		$return = $this->upload->do_upload($fieldName);
+		$image_data = $this->upload->data();
+		$config = array(
+			'source_image' => $image_data['full_path'],
+			'new_image' => $this->gallery_path . '/thumbs',
+			'maintain_ration' => true,
+			'width' => $width,
+			'height' => $height
+		);
+
+		if ($fileName != null) {
+			$config['file_name'] = $fileName;
+			$config['overwrite'] = true;
+		}
+
+		$this->load->library('image_lib', $config);
+		$this->image_lib->resize();
+		return $return ? $this->upload->data() : false;
+	}
+
+	function delete_file($file_name){
         $files = array($this->gallery_real_url, $this->gallery_real_url.'/thumbs/');
         foreach ($files as $file){
             unlink($file.$file_name);

@@ -1,4 +1,37 @@
 $(document).ready(function() {
+    $('.preview input[type="file"]').change(function(){
+        readURL(this);
+        $(this).prev('.delete').removeClass('none')
+    });
+
+    $('.preview .delete').click(function(){
+        var _parent = $(this).parent();
+        var _image = _parent.data('image')
+        if (_image) {
+            var url = $(this).attr('href');
+            $.ajax({
+                url:url,
+                type:'GET',
+                success:function (data) {
+                    $(this).addClass('none')
+                    _parent.data('image','').css('background-image','');
+                }
+            });
+        } else {
+            $(this).addClass('none')
+            _parent.data('image','').css('background-image','').find("input[type='file']").val("");
+        }
+        return false;
+    })
+    function readURL(input) {
+
+        var fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function(event){
+            $(input).parent().css('background-image','url('+event.target.result+')');
+        }
+    }
+
     $('input.numeric').keydown(function(evt) {
         var charCode = (evt.which) ? evt.which : event.keyCode;
         if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))

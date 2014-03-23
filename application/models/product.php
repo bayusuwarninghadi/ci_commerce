@@ -227,6 +227,11 @@ class Product extends CI_Model
 		$query = $this->db->query(sprintf("DELETE FROM %s WHERE pk_i_id='%s'", $this->table, $id));
 		return $query;
 	}
+	function deleteImage($data){
+		$sql= sprintf('UPDATE %s SET %s = NULL WHERE pk_i_id = %d', $this->table, $data['field'], $data['pk_i_id']);
+		$query = $this->db->query($sql);
+		return $query;
+	}
 
 }
 
