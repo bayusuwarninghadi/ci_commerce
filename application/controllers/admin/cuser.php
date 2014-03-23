@@ -289,7 +289,20 @@ class CUser extends CAdmin
 				$this->session->set_userdata(array('adminMessage' => $msg));
 				header("Location: /admin/user");
 				break;
+			case 'delete-image':
+				$data['pk_i_id'] = $this->input->get('id');
+				$data['image_id'] = $this->input->get('image-id');
 
+				$config = array(
+					'path' => 'images/user'
+				);
+
+				$this->pages->deleteImage($data);
+
+				$this->load->model('fupload', '', false, $config);
+				$this->fupload->delete_file($data['image_id']);
+
+				break;
 			case 'delete':
 				$data['pk_i_id'] = $this->input->get('id');
 				if ($data['pk_i_id'] == '') return false;

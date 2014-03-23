@@ -3,13 +3,12 @@
         <?php if ($act == 'edit') { ?>
         <form action="/admin/user/edit?id=<?=$page->pk_i_id?>" id="pageEdit" enctype="multipart/form-data"
               method="post">
-            <?php if (isset($page->s_image)) { ?>
-            <a class="preview" href="<?php echo '/images/user/' . $page->s_image;?>">
-                <img src="<?php echo '/images/user/thumbs/' . $page->s_image;?>" alt="">
-            </a>
-            <? } ?>
-            <?php echo form_upload('s_image'); ?>
-            <div class="row">
+	        <div data-image='<?=$page->s_image?>' style="background-image: url('<?= '/images/user/thumbs/' . $page->s_image;?>') " class="preview fleft">
+		        <a class="delete <? if (!isset($page->s_image)) echo 'none'?>" href="<?='/admin/user/delete-image?id='.$page->pk_i_id.'&image-id=' . $page->s_image;?>"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image'); ?>
+	        </div>
+	        <div class="clear"></div>
+	        <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text" value="<?php echo $page->s_name; ?>">
             </div>
@@ -46,8 +45,12 @@
         <?php } elseif ($act == 'new') { ?>
         <h1>POST NEW</h1>
         <form action="/admin/user/new" id="pageNew" enctype="multipart/form-data" method="post">
-            <?php echo form_upload('s_image'); ?>
-            <div class="row">
+	        <div class="preview fleft">
+		        <a class="delete none" href="#"><i class="icon icon-trash"></i> </a>
+		        <?php echo form_upload('s_image'); ?>
+	        </div>
+	        <div class="clear"></div>
+	        <div class="row">
                 <label>Name</label>
                 <input name="s_name" type="text">
             </div>

@@ -89,17 +89,19 @@ class CPages extends CAdmin
 
 				$this->doView('pages', $data, true);
 				break;
-			case 'delete_image':
+			case 'delete-image':
 				$data['pk_i_id'] = $this->input->get('id');
-				if ($data['pk_i_id'] == '') return false;
-				$page = (Array)$this->pages->findByid($data['pk_i_id']);
-				if (!$page) {
-					$this->session->set_userdata(array('adminMessage' => 'item not found'));
-					header("Location: /admin/pages");
-				}
-				if ($page[0]->s_image) {
-					$this->fupload->delete_file($page[0]->s_image);
-				}
+				$data['image_id'] = $this->input->get('image-id');
+
+				$config = array(
+					'path' => 'images/pages'
+				);
+
+				$this->pages->deleteImage($data);
+
+				$this->load->model('fupload', '', false, $config);
+				$this->fupload->delete_file($data['image_id']);
+
 				break;
 			case 'delete':
 				$data['pk_i_id'] = $this->input->get('id');
